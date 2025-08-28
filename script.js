@@ -8,16 +8,34 @@ function convertToRoman(num) {
       5:['V', 5], 
       6:['I', 1]
     };
+	let result = "";
+	for (int i = 0; i <= 6; i ++) {
+		for (let i = 0; i <= 6; i ++) {
+			let symbol = obj[i][0];
+			let value = obj[i][1];
 
-  //your code here
+			if (i % 2 === 0 && i < 6) {
+				let nextValue = obj[i][1];
+			 let subtractValue = obj[i + 2][1];
+				let subtractSymbol = obj[i + 2][0];
+
+				if (num >= nextValue - subtractValue) {
+                result += subtractSymbol + symbol;
+                num -= (nextValue - subtractValue);
+            }
+			}
+
+			 while (num >= value) {
+            result += symbol;
+            num -= value;
+        }
+		}
+
+		console.log(result);
+	}
 
 }
-// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
-// console.log(convertToRoman(36));
+console.log(convertToRoman(36));
 
-
-
-
-// do not edit below this line
 module.exports = convertToRoman
